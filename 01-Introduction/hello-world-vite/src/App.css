@@ -1,0 +1,15 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  color: green;
+  padding-bottom: 2.5rem;
+}
+
+p {
+  color: blue;
+  padding-bottom: 0.5rem;
+  font-size: 20px;
+}
