@@ -9,6 +9,9 @@ export const useFetch = (url) => {
   const [method, setMethod] = useState(null)          // method used: GET POST
   const [callFetch, setCallFetch] = useState(false)   // sempre que alterar vou recarregar o método
 
+  // 094. Loading stage 
+  const [loading, setLoading] = useState(false)
+
   // 093. Reformulando o POST
   const httpConfig = (data, method) => {
     //debugger
@@ -27,10 +30,18 @@ export const useFetch = (url) => {
 
   // 092. - Create custom hooks
   useEffect(() => {
+
+
     const fetchData = async () => {
+      // 094. Loading stage 
+      setLoading(true)
+
       const res = await fetch(url)    // get data from api
       const json = await res.json()   // converte json to jsx
       setData(json)                   // coloca os dados no data <- setdata(json)
+
+      // 094. Loading stage 
+      setLoading(false)
     }
     fetchData()
 
@@ -50,5 +61,5 @@ export const useFetch = (url) => {
     httpRequest()
   }, [config, method, url])
 
-  return { data, httpConfig, }
+  return { data, httpConfig, loading }
 }

@@ -16,7 +16,7 @@ function App() {
   const [price, setPrice] = useState('')
 
   // 092. - Create custom hooks
-  const { data: items, httpConfig } = useFetch(url) // rename: data to items
+  const { data: items, httpConfig, loading } = useFetch(url) // rename: data to items
   //console.log('setFetch: ', data)
 
   //= 089. fetch data from api "react nativ" = 
@@ -64,13 +64,17 @@ function App() {
 
       <h3>= 089. fetch data from api "react nativ" = </h3>
       <h4>Lista de produtos</h4>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.name} - {product.price} €
-          </li>
-        ))}
-      </ul>
+      {/* 094. Loading stage  */}
+      {loading && <p>Carregando dados...</p>}
+      {!loading && (
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>
+              {product.name} - {product.price} €
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div className="new-class">
         <h3>= 090. adicionando dados com react = </h3>
@@ -93,14 +97,17 @@ function App() {
 
       <h3>= 092. - Create custom hooks= </h3>
       <h4>Lista de produtos</h4>
-      <ul>
-        {items && items.map((product) => (
-          <li key={product.id}>
-            {product.name} - {product.price} €
-          </li>
-        ))}
-      </ul>
-
+      {/* 094. Loading stage  */}
+      {loading && <p>Carregando dados...</p>}
+      {!loading && (
+        <ul>
+          {items && items.map((product) => (
+            <li key={product.id}>
+              {product.name} - {product.price} €
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

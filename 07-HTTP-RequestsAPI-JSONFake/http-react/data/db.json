@@ -24,6 +24,26 @@
       "id": "c04a",
       "name": "Gabardine",
       "price": "99.99"
+    },
+    {
+      "id": "a585",
+      "name": "teste1",
+      "price": "1.11"
+    },
+    {
+      "id": "53c4",
+      "name": "teste1",
+      "price": "1.11"
+    },
+    {
+      "id": "efb3",
+      "name": "telmo 2",
+      "price": "2.22"
+    },
+    {
+      "id": "3346",
+      "name": "telmo 2",
+      "price": "2.22"
     }
   ]
 }
