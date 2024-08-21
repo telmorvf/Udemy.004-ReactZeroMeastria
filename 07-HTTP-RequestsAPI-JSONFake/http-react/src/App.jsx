@@ -16,9 +16,9 @@ function App() {
   const [price, setPrice] = useState('')
 
   // 092. - Create custom hooks
-  const { data } = useFetch(url) // rename: data to items
+  const { data: items } = useFetch(url) // rename: data to items
   //console.log('setFetch: ', data)
-  //debugger
+
   //= 089. fetch data from api "react nativ" = 
   useEffect(() => {
     async function fetchData() {
@@ -28,7 +28,6 @@ function App() {
     }
     fetchData()
   }, []);
-  //console.log('1: ', products)
 
   // = 090. adicionando dados com react = 
   const handleSubmit = async (e) => {
@@ -40,6 +39,7 @@ function App() {
     }
 
     /// 093. Refatorando POST - Já tenho os dados no meu hook personalizado
+    // envia dados para api
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', },
@@ -47,9 +47,9 @@ function App() {
     })
 
     // = 091. fetch data from api Dinamico Último resultado só=
+    // recebe o network response
     const addedProducts = await res.json()
     setProducts((prevProducts) => [...prevProducts, addedProducts])
-
 
     setName('')
     setPrice('')
@@ -92,11 +92,11 @@ function App() {
       <h3>= 092. - Create custom hooks= </h3>
       <h4>Lista de produtos</h4>
       <ul>
-        {/* {items && items.map((product) => (
+        {items && items.map((product) => (
           <li key={product.id}>
             {product.name} - {product.price} €
           </li>
-        ))} */}
+        ))}
       </ul>
 
     </div>
