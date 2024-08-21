@@ -16,7 +16,7 @@ function App() {
   const [price, setPrice] = useState('')
 
   // 092. - Create custom hooks
-  const { data: items } = useFetch(url) // rename: data to items
+  const { data: items, httpConfig } = useFetch(url) // rename: data to items
   //console.log('setFetch: ', data)
 
   //= 089. fetch data from api "react nativ" = 
@@ -38,21 +38,23 @@ function App() {
       price,
     }
 
-    /// 093. Refatorando POST - Já tenho os dados no meu hook personalizado
+    /// 093. Reformulando POST - Já tenho os dados no meu hook personalizado (// pelo 93)
     // envia dados para api
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', },
-      body: JSON.stringify(product),
-    })
+    // const res = await fetch(url, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json', },
+    //   body: JSON.stringify(product),
+    // })
 
-    // = 091. fetch data from api Dinamico Último resultado só=
+    // = 091. fetch data from api Dinamico Último resultado só= (// pelo 93)
     // recebe o network response
-    const addedProducts = await res.json()
-    setProducts((prevProducts) => [...prevProducts, addedProducts])
+    // const addedProducts = await res.json()
+    // setProducts((prevProducts) => [...prevProducts, addedProducts])
 
+    httpConfig(product, 'POST')
     setName('')
     setPrice('')
+
   }
 
 

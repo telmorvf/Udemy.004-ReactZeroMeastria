@@ -4,6 +4,28 @@ import { useState, useEffect } from "react";
 export const useFetch = (url) => {
   const [data, setData] = useState(null)
 
+  // 093. Reformulando o POST
+  const [config, setConfig] = useState(null)          // config method, headrs
+  const [method, setMethod] = useState(null)          // method used: GET POST
+  const [callFetch, setCallFetch] = useState(false)   // sempre que alterar vou recarregar o método
+
+  // 093. Reformulando o POST
+  const httpConfig = (data, method) => {
+    //debugger
+    if (method === 'POST') {
+      setConfig({
+        method,
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+
+      setMethod(method)
+    }
+  }
+
+  // 092. - Create custom hooks
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(url)    // get data from api
@@ -12,7 +34,21 @@ export const useFetch = (url) => {
     }
     fetchData()
 
-  }, [url])
+  }, [url, callFetch])
 
-  return { data }
+  // 093. Reformulando o POST
+  useEffect(() => {
+    //debugger
+    const httpRequest = async () => {
+      if (method === 'POST') {
+        let fetchOptions = [url, config]           // array com url e configurações
+        const res = await fetch(...fetchOptions)
+        const json = await res.json()
+        setCallFetch(json)
+      }
+    }
+    httpRequest()
+  }, [config, method, url])
+
+  return { data, httpConfig, }
 }
