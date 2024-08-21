@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Camisa",
+      "price": 59.9
+    },
+    {
+      "id": "2",
+      "name": "Calça vermelha",
+      "price": 90
+    },
+    {
+      "id": "3",
+      "name": "Boné aba reta",
+      "price": 29.9
+    },
+    {
+      "id": "ede2",
+      "name": "Jaleco",
+      "price": "20.22"
+    },
+    {
+      "id": "c04a",
+      "name": "Gabardine",
+      "price": "99.99"
+    },
+    {
+      "id": "6252",
+      "name": "eewdf",
+      "price": "1"
+    },
+    {
+      "id": "583f",
+      "name": "telmo2",
+      "price": "2.22"
+    },
+    {
+      "id": "3954",
+      "name": "Telmo3",
+      "price": "3.33"
+    },
+    {
+      "id": "e245",
+      "name": "Telmo4",
+      "price": "4"
+    }
+  ]
+}
