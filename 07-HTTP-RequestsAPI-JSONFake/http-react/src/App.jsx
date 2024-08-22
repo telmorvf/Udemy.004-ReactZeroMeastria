@@ -16,7 +16,7 @@ function App() {
   const [price, setPrice] = useState('')
 
   // 092. - Create custom hooks
-  const { data: items, httpConfig, loading } = useFetch(url) // rename: data to items
+  const { data: items, httpConfig, loading, error } = useFetch(url) // rename: data to items
   //console.log('setFetch: ', data)
 
   //= 089. fetch data from api "react nativ" = 
@@ -66,7 +66,8 @@ function App() {
       <h4>Lista de produtos</h4>
       {/* 094. Loading stage  */}
       {loading && <p>Carregando dados...</p>}
-      {!loading && (
+      {error && <p>{error}</p>}
+      {!error && (
         <ul>
           {products.map((product) => (
             <li key={product.id}>
@@ -87,7 +88,9 @@ function App() {
             Price:
             <input type="number" value={price} name="price" onChange={(e) => setPrice(e.target.value)} required />
           </label>
-          <input type="submit" value="Criar produto" />
+          {/* 095. stage de loading no POST */}
+          {loading && <input type="submit" disabled value="Criar produto" />}
+          {!loading && <input type="submit" value="Criar produto" />}
         </form>
       </div>
 
@@ -99,7 +102,8 @@ function App() {
       <h4>Lista de produtos</h4>
       {/* 094. Loading stage  */}
       {loading && <p>Carregando dados...</p>}
-      {!loading && (
+      {error && <p>{error}</p>}
+      {!error && (
         <ul>
           {items && items.map((product) => (
             <li key={product.id}>

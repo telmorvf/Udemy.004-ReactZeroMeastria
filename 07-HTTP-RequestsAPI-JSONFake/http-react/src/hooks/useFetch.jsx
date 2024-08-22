@@ -12,6 +12,10 @@ export const useFetch = (url) => {
   // 094. Loading stage 
   const [loading, setLoading] = useState(false)
 
+  // 096. tratando erros
+  const [error, setError] = useState(null)
+
+
   // 093. Reformulando o POST
   const httpConfig = (data, method) => {
     //debugger
@@ -31,15 +35,18 @@ export const useFetch = (url) => {
   // 092. - Create custom hooks
   useEffect(() => {
 
-
     const fetchData = async () => {
       // 094. Loading stage 
       setLoading(true)
 
-      const res = await fetch(url)    // get data from api
-      const json = await res.json()   // converte json to jsx
-      setData(json)                   // coloca os dados no data <- setdata(json)
-
+      try {
+        const res = await fetch(url)    // get data from api
+        const json = await res.json()   // converte json to jsx
+        setData(json)                   // coloca os dados no data <- setdata(json)
+      } catch (error) {
+        console.log(error.message)
+        setError('houve algum erro ao carregar os dados!')
+      }
       // 094. Loading stage 
       setLoading(false)
     }
@@ -61,5 +68,5 @@ export const useFetch = (url) => {
     httpRequest()
   }, [config, method, url])
 
-  return { data, httpConfig, loading }
+  return { data, httpConfig, loading, error }
 }
