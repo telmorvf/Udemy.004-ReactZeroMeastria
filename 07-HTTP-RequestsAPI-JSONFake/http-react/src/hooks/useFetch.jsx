@@ -26,22 +26,20 @@ export const useFetch = (url) => {
           'Content-type': 'application/json',
         },
         body: JSON.stringify(data)
-
       })
       setMethod(method)
     }
-
-    if (method === 'DELETE') {
+    else if (method === 'DELETE') {
       setConfig({
         method,
         headers: {
           'Content-type': 'application/json',
         },
         id: data.id,
-
       })
       setMethod(method)
     }
+
   }
 
   // 092. - Create custom hooks
@@ -55,9 +53,11 @@ export const useFetch = (url) => {
         const res = await fetch(url)    // get data from api
         const json = await res.json()   // converte json to jsx
         setData(json)                   // coloca os dados no data <- setdata(json)
+
       } catch (error) {
         console.log(error.message)
         setError('houve algum erro ao carregar os dados!')
+
       }
       // 094. Loading stage 
       setLoading(false)
@@ -70,19 +70,20 @@ export const useFetch = (url) => {
   useEffect(() => {
     //debugger
     const httpRequest = async () => {
+      let json
       if (method === 'POST') {
         let fetchOptions = [url, config]      // array com url e configurações
         const res = await fetch(...fetchOptions)
-        const json = await res.json()
-        setCallFetch(json)
-      }
+        json = await res.json()
 
-      if (method === 'DELETE') {
-        let fetchOptions = [`${url}/${config.id}`, config]  // array com url e configurações
-        const res = await fetch(...fetchOptions)
-        const json = await res.json()
-        setCallFetch(json)
       }
+      else if (method === 'DELETE') {
+        let deleteOptions = [`${url}/${config.id}`, config]  // array com url e configurações
+        const res = await fetch(...deleteOptions)
+        json = await res.json()
+
+      }
+      setCallFetch(json)
     }
     httpRequest()
   }, [config, method, url])

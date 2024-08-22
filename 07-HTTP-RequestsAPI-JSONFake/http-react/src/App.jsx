@@ -56,9 +56,10 @@ function App() {
     setPrice('')
   }
 
+  // tarefa 6 - apagar artigo da lista
   const toogleToDelete = id => {
     const product = items.find(n => n.id === id)
-    httpConfig(product, "DELETE")
+    if (product) httpConfig(product, "DELETE")
   }
 
   return (
@@ -110,7 +111,7 @@ function App() {
         <ul>
           {items && items.map((product) => (
             <li key={product.id}>
-              {product.name} - {product.price} €
+              <span>{product.name} - {product.price} € </span>
               <button onClick={() => toogleToDelete(product.id)}>apagar</button>
             </li>
           ))}
