@@ -26,8 +26,20 @@ export const useFetch = (url) => {
           'Content-type': 'application/json',
         },
         body: JSON.stringify(data)
-      })
 
+      })
+      setMethod(method)
+    }
+
+    if (method === 'DELETE') {
+      setConfig({
+        method,
+        headers: {
+          'Content-type': 'application/json',
+        },
+        id: data.id,
+
+      })
       setMethod(method)
     }
   }
@@ -54,12 +66,19 @@ export const useFetch = (url) => {
 
   }, [url, callFetch])
 
-  // 093. Reformulando o POST
+  // 093. Reformulando o POST, DELETE
   useEffect(() => {
     //debugger
     const httpRequest = async () => {
       if (method === 'POST') {
-        let fetchOptions = [url, config]           // array com url e configurações
+        let fetchOptions = [url, config]      // array com url e configurações
+        const res = await fetch(...fetchOptions)
+        const json = await res.json()
+        setCallFetch(json)
+      }
+
+      if (method === 'DELETE') {
+        let fetchOptions = [`${url}/${config.id}`, config]  // array com url e configurações
         const res = await fetch(...fetchOptions)
         const json = await res.json()
         setCallFetch(json)

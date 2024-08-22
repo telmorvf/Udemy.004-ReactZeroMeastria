@@ -54,9 +54,12 @@ function App() {
     httpConfig(product, 'POST')
     setName('')
     setPrice('')
-
   }
 
+  const toogleToDelete = id => {
+    const product = items.find(n => n.id === id)
+    httpConfig(product, "DELETE")
+  }
 
   return (
 
@@ -108,6 +111,7 @@ function App() {
           {items && items.map((product) => (
             <li key={product.id}>
               {product.name} - {product.price} €
+              <button onClick={() => toogleToDelete(product.id)}>apagar</button>
             </li>
           ))}
         </ul>
