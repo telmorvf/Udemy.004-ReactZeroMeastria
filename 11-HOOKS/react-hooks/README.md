@@ -11,8 +11,10 @@ npm create vite@latest (not)
 
 npm i
 
+npm i react-router-dom
+
+não foi instalado
+
 npm i json-server@1.0.0-alpha.23
 
 "server": "json-server --watch data/db.json"
-
-npm i react-router-dom
