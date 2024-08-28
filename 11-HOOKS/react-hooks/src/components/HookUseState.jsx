@@ -4,8 +4,8 @@ const HookUseState = () => {
   // 164 useState: usado para quando necessitamos de alterar um valor e renderizar o componente para que esse valor seja exiido valor no ecrã
   let userName = 'João'
   const [name, setName] = useState('Telmo')
-  console.log('164 useState: ', userName)
-  console.log('164 useState: ', name)
+  //console.log('164 useState: ', userName)
+  //console.log('164 useState: ', name)
 
   const changeNames = () => {
     userName = 'João Sousa'
@@ -18,7 +18,7 @@ const HookUseState = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // envio a uma API dos dados2
-    console.log(age)
+    //console.log(age)
   }
 
 
